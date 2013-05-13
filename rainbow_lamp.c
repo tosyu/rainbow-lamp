@@ -8,6 +8,7 @@
 
 #define LED_NUMBER 3
 #define uint8_t unsigned char
+#define limited_rand(a) (rand() / (RAND_MAX / 1.0) * (a))
 
 typedef struct {
     uint8_t r;
@@ -50,9 +51,9 @@ void reset_leds(color *leds, uint8_t length)
 void apply_random_color(color *c_ptr)
 {
     reseed();
-    c_ptr->r = (uint8_t) (rand() / (RAND_MAX / 1.0) * max_rand);
-    c_ptr->g = (uint8_t) (rand() / (RAND_MAX / 1.0) * max_rand);
-    c_ptr->b = (uint8_t) (rand() / (RAND_MAX / 1.0) * max_rand);
+    c_ptr->r = (uint8_t) limited_rand(max_rand);
+    c_ptr->g = (uint8_t) limited_rand(max_rand);
+    c_ptr->b = (uint8_t) limited_rand(max_rand);
 }
 
 void reseed() {
