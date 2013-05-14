@@ -1,0 +1,24 @@
+CC=gcc
+CFLAGS_DEBUG=-Wall -ansi -pedantic -g -DDEBUG=1
+CFLAGS=-Wall -ansi -pedantic -O
+TARGET=rainbow_lamp
+OBJS=$(TARGET).o utils.o color_utils.c
+
+all:
+	$(CC) $(CFLAGS) -c $(TARGET).c
+	$(CC) $(CFLAGS) -c utils.c
+	$(CC) $(CFLAGS) -c color_utils.c
+	$(CC) $(CFLAGS) -o$(TARGET) $(OBJS)
+
+debug:
+	$(CC) $(CFLAGS_DEBUG) -c $(TARGET).c
+	$(CC) $(CFLAGS_DEBUG) -c utils.c
+	$(CC) $(CFLAGS_DEBUG) -c color_utils.c
+	$(CC) $(CFLAGS_DEBUG) -c debug_utils.c
+	$(CC) $(CFLAGS_DEBUG) -o$(TARGET) $(OBJS) debug_utils.o
+
+clean:
+	rm -rf *.o
+	rm -rf *.a
+	rm -rf $(TARGET)
+	rm -rf *.out
