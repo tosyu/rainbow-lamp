@@ -5,7 +5,7 @@
 static uint8_t rseed = 0;
 
 void reseed() {
-  if (rseed == 255) {
+  if (rseed >= UINT8_MAX) {
 	rseed = 0;
   } else {
 	++rseed;
